@@ -26,3 +26,10 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# vim
+*.swp
+
+# local test harness
+dev-app.sh
+dev-app_2.sh

@@ -1,9 +1,23 @@
-# whos-on-call
+# Who's on Call?
 
 
 A small app asking PagerDuty who's on call an if that name changed since the last time it sends a text message using Twilio to the involved parties.
 
+The plan is to use a [Heroku](http://heroku.com)-app to host this and use the scheduler add-on to run the script every morning or something in that fashion. We'll see how it progresses.
+
+### Problem statement
+We have a rolling schedule 
+
 ## Install
+Draft:
+
+* Push to heroku
+    * 		> git push heroku master
+* enter config values
+    *		> heroku set env..   
+* install heroku [scheduler add-on](https://addons.heroku.com/scheduler)
+* configure schedule add on
+ 
 
 
 ## Pre-reqs
@@ -13,8 +27,15 @@ Twilio account with some credits on it.
 
 ## Coniguration
 
-PagerDuty API KEY
-PagerDuty subdomain
+### PagerDuty 
+#### API KEY
+**process.env.PD_APIKEY **
+
+#### Subdomain
+**PD_SUBDOMAIN**
+
+### Twilio
+****
 Twilio API KEY
 Twilio Sender Number.
 
