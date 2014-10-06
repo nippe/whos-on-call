@@ -41,7 +41,7 @@ request(options, function(err, response, body){
 				var number_on = result;
 				if(number_on) {
 					var message = 'Hi ' + current_user_oncall.name + ', \nYou\'re now on call';
-					if(user_signing_off)
+					if(user_signing_off && user_signing_off.id !== 'N/A')
 						message += user_signing_off.name + ' is signing off.';
 
 					messageSender.sendSms(number_on, message, pd_settings);
