@@ -1,43 +1,52 @@
 # Who's on Call?
 
+##(IN PROGRESS....)
 
 A small app asking PagerDuty who's on call an if that name changed since the last time it sends a text message using Twilio to the involved parties.
 
 The plan is to use a [Heroku](http://heroku.com)-app to host this and use the scheduler add-on to run the script every morning or something in that fashion. We'll see how it progresses.
 
+I wanted to store current user on call to compare with for changes. Using a non resilient hosting as heroku I found no other way than to keep that data external. I chose mongoDB becaues of ease. But it feels like major overkill to use mongo to store one lousy json document... But it works :).
+
 ### Problem statement
-We have a rolling schedule 
+We have a rolling schedule in PagerDuty on my company. The thing is that I don't know if I'm on or off duty without checking in PagerDuty. So what this app does is to check for changes in who is on call and send a text message to both the user entering on call status and the one leaving. 
 
 ## Install
-Draft:
 
+* Clone or fork the repo
 * Push to heroku
     * 	```git push heroku master```
-* enter config values
-    *	```heroku config:set env..```   
-* install heroku [scheduler add-on](https://addons.heroku.com/scheduler)
-* configure schedule add on
+* Enter config values (see [Configuration](#Configuration))
+    *	```heroku config:set KEY1="VALUE1"```   
+* Install heroku [scheduler add-on](https://addons.heroku.com/scheduler)
+	* ```heroku addon:add scheduler```	
+* Configure schedule add on
+	* Enter the schduler UI and enter `node index.js`
  
 
 
 ## Pre-reqs
-Pager duty account
-Twilio account with some credits on it.
+ * PagerDuty account
+ * Twilio account with some credits on it
+ * MongoDB instanse somewhere
 
 
 ## Coniguration
 
 ### PagerDuty 
-#### API KEY
-**process.env.PD_APIKEY **
 
-#### Subdomain
-**PD_SUBDOMAIN**
+**PD_APIKEY ** - API KEY for PagerDuty
+
+**PD_SUBDOMAIN** - Your PagerDuty subdomain. https://__subdomain__.pagerduty.com
+
 
 ### Twilio
-****
-Twilio API KEY
-Twilio Sender Number.
+**TWILIO_SID** - 
+
+**TWILIO_AUTH**
+
+**TWILIO_FROM_NUMBER** - The SMS-enablen number you have on twilio
+
 
 
 
