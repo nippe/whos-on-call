@@ -22,6 +22,7 @@ var options = {
 
 //Get the person on call
 request(options, function(err, response, body){
+	if(err) throw err;
 	var data = JSON.parse(body);
 
 	var current_user_oncall = data.escalation_policies[0].on_call[0].user;
@@ -55,7 +56,12 @@ request(options, function(err, response, body){
 			}
 		});
 		// Swittch on call user
+		console.log('Writeing to conf ', current_user_oncall);
 		process.env.ONCALL_USER = JSON.stringify(current_user_oncall);
+
+		for(var key in process.env) {
+			console.log(' - > %s: %s', key, process.env[key]);
+		}
 	}
 	else {
 		console.log('All is good, no change');

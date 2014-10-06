@@ -12,9 +12,9 @@ We have a rolling schedule
 Draft:
 
 * Push to heroku
-    * 		> git push heroku master
+    * 	```git push heroku master```
 * enter config values
-    *		> heroku set env..   
+    *	```heroku config:set env..```   
 * install heroku [scheduler add-on](https://addons.heroku.com/scheduler)
 * configure schedule add on
  
