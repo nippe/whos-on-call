@@ -22,6 +22,7 @@
   "homepage": "https://github.com/nippe/whos-on-call",
   "dependencies": {
     "lodash-node": "^2.4.1",
+    "mongodb": "^1.4.18",
     "request": "^2.44.0",
     "twilio": "^1.7.0"
   }
