@@ -41,6 +41,11 @@ Twilio Sender Number.
 
 
 
+## TODO
+* Introduce promises or koa to get the code more readable
+* Installation instructions
+
+
 
 ## License
 

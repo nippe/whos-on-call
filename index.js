@@ -32,13 +32,10 @@ request(options, function(err, response, body){
 
 		var first_shift = user_signing_off ? false : true;
 		var user_signing_off = user_signing_off || {id: 'N/A'};
-		 // process.env.ONCALL_USER ? JSON.parse(process.env.ONCALL_USER) : '';
 		
-		// Has user switched?
-		//console.log('%s <-> %s', current_user_oncall.id, user_signing_off.id	);
 		if( current_user_oncall.id !== user_signing_off.id) {
 
-			pd_settings.fake = true;
+			pd_settings.fake = process.env.FAKE_SEND || false;
 			// Get phonenumbers
 			getUserPhoneNumber(current_user_oncall.id, pd_settings, function(err, result){
 				var number_on = result;
@@ -49,7 +46,7 @@ request(options, function(err, response, body){
 
 					messageSender.sendSms(number_on, message, pd_settings);
 
-					if(!first_shift){
+					if(user_signing_off.id != 'N/A') {
 						getUserPhoneNumber(user_signing_off.id, pd_settings, function(err, result){
 							var number_off = result;
 							if(number_off){
@@ -57,19 +54,16 @@ request(options, function(err, response, body){
 								if(current_user_oncall)
 									message += current_user_oncall.name + ' is signing on.';
 
-								messageSender.sendSms(number_off, user_signing_off.name, pd_settings);
+								messageSender.sendSms(number_off,message, pd_settings);
 							}
 						});
 					}
+					// Swittch on call user
+					userStore.saveCurrent(current_user_oncall, function(err, result){
+						if(err) throw err;
+						console.log('New user stored: ', current_user_oncall);
+					});
 				}
-			});
-
-			
-
-			// Swittch on call user
-			userStore.saveCurrent(current_user_oncall, function(err, result){
-				if(err) throw err;
-				console.log('Saved new user?');
 			});
 		}
 		else {
