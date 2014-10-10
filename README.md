@@ -31,11 +31,11 @@ We have a rolling schedule in PagerDuty on my company. The thing is that I don't
  * MongoDB instanse somewhere
 
 
-## Coniguration
+## Configuration
 
 ### PagerDuty 
 
-**PD_APIKEY ** - API KEY for PagerDuty
+**PD_APIKEY** - API KEY for PagerDuty
 
 **PD_SUBDOMAIN** - Your PagerDuty subdomain. https://__subdomain__.pagerduty.com
 
@@ -53,6 +53,8 @@ We have a rolling schedule in PagerDuty on my company. The thing is that I don't
 ## TODO
 * Introduce promises or koa to get the code more readable
 * Installation instructions
+* Message templates
+* Sender name - investigate
 
 
 
