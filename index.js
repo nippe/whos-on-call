@@ -8,7 +8,7 @@ var pd_settings = {
 	  sid: process.env.TWILIO_SID,
 		auth: process.env.TWILIO_AUTH,
 		fromNumber: process.env.TWILIO_FROM_NUMBER
-}
+};
 
 var messageSender = require('./services/sendMessageService');
 var request = require('request');
@@ -31,7 +31,7 @@ request(options, function(err, response, body){
 	userStore.getCurrent(function(err, user_signing_off){
 
 		var first_shift = user_signing_off ? false : true;
-		var user_signing_off = user_signing_off || {id: 'N/A'};
+		user_signing_off = user_signing_off || {id: 'N/A'};
 		
 		if( current_user_oncall.id !== user_signing_off.id) {
 
@@ -40,7 +40,7 @@ request(options, function(err, response, body){
 			getUserPhoneNumber(current_user_oncall.id, pd_settings, function(err, result){
 				var number_on = result;
 				if(number_on) {
-					var message = 'Hi ' + current_user_oncall.name + ', \nYou\'re now on call';
+					var message = 'Hi ' + current_user_oncall.name + ', \nYou\'re now on call. ';
 					if(user_signing_off && user_signing_off.id !== 'N/A')
 						message += user_signing_off.name + ' is signing off.';
 
@@ -93,7 +93,7 @@ function getUserPhoneNumber(user_id, settings, callback){
 						callback(null, number);
 				}	
 				else{
-					var err = new Error('No number available');
+					err = new Error('No number available');
 					callback(err, null);
 				}
 			}
