@@ -1,6 +1,6 @@
 {
   "name": "whos-on-call",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A small app asking PagerDuty who's on call an if that name changed since the last time it sends a text message using Twilio to the involved parties.",
   "main": "index.js",
   "scripts": {
