@@ -1,5 +1,5 @@
 //require('./services/pdjs');
-var _ = require('lodash-node/underscore');
+var _ = require('lodash');
 var userStore = require('./services/userStorage');
 
 var pd_settings = {
